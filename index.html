@@ -9,37 +9,36 @@
   <title>Backgammon Pip Count Trainer</title>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:#fafaf8;font-family:Georgia,'Times New Roman',serif;color:#111;-webkit-text-size-adjust:100%;touch-action:manipulation}
-    #app{max-width:680px;margin:0 auto;padding:16px 14px 60px;min-height:100%}
-    .header{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:10px}
-    #board-wrap{margin-bottom:10px}
+    html,body{height:100%;background:#fafaf8;font-family:Georgia,'Times New Roman',serif;color:#111;-webkit-text-size-adjust:100%;touch-action:manipulation;font-size:18px}
+    #app{max-width:680px;margin:0 auto;padding:20px 18px 60px;min-height:100%}
+    .header{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:14px}
+    #board-wrap{margin-bottom:12px}
     svg{display:block;width:100%;height:auto}
-    .pos-label{font-size:12px;color:#777;font-style:italic;margin-bottom:14px}
-    .inputs{display:flex;gap:16px;margin-bottom:14px;flex-wrap:wrap}
-    .input-group{display:flex;flex-direction:column;gap:5px}
-    .input-group label{font-size:12px;color:#555}
-    .input-group input{width:110px;padding:10px 12px;font-size:18px;border:1px solid #bbb;border-radius:4px;font-family:Georgia,serif;background:#fff;-webkit-appearance:none;appearance:none;outline:none}
+    .pos-label{font-size:16px;color:#777;font-style:italic;margin-bottom:16px}
+    .inputs{display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap}
+    .input-group{display:flex;flex-direction:column;gap:8px}
+    .input-group label{font-size:16px;color:#555}
+    .input-group input{width:130px;padding:12px 14px;font-size:22px;border:1px solid #bbb;border-radius:4px;font-family:Georgia,serif;background:#fff;-webkit-appearance:none;appearance:none;outline:none}
     .input-group input:focus{border-color:#555}
-    .timer-display{font-size:13px;color:#888;margin-top:4px;font-variant-numeric:tabular-nums;min-height:20px;font-style:italic}
+    .timer-display{font-size:17px;color:#888;font-variant-numeric:tabular-nums;min-height:24px;font-style:italic}
     .timer-display.running{color:#c47a00}
     .timer-display.stopped{color:#555}
-    .error{font-size:12px;color:#dc2626;margin-bottom:10px;min-height:18px}
-    .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-    button{padding:11px 20px;font-size:14px;cursor:pointer;border:1.5px solid #333;border-radius:4px;background:#fff;font-family:Georgia,serif;color:#111;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+    .error{font-size:15px;color:#dc2626;margin-bottom:12px;min-height:22px}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+    button{padding:14px 24px;font-size:17px;cursor:pointer;border:1.5px solid #333;border-radius:4px;background:#fff;font-family:Georgia,serif;color:#111;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
     button:active{background:#111;color:#fff}
-    .hint-box{border:1px solid #ccc;border-radius:4px;padding:12px 14px;font-size:13px;color:#444;margin-bottom:14px;line-height:1.65;background:#f5f5f0;font-style:italic}
-    .result-box{border:1px solid #ccc;border-radius:4px;padding:14px 16px;background:#fff;margin-bottom:10px}
-    .result-title{font-size:11px;font-weight:bold;letter-spacing:.08em;margin-bottom:12px;color:#333}
-    .result-row{display:flex;gap:20px;flex-wrap:wrap}
-    .result-col{flex:1;min-width:130px}
-    .result-side{font-size:11px;color:#999;margin-bottom:4px}
-    .result-actual{font-size:28px;font-weight:bold;letter-spacing:-.02em}
-    .result-detail{font-size:12px;color:#666;margin-top:4px}
-    .score-badge{display:inline-block;margin-top:6px;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:bold;letter-spacing:.05em}
-    .result-lead{margin-top:12px;font-size:12px;color:#666;border-top:1px solid #eee;padding-top:10px}
-    .score-bar{display:flex;gap:14px;font-size:11px;color:#888;margin-bottom:14px;align-items:center;flex-wrap:wrap}
+    .hint-box{border:1px solid #ccc;border-radius:4px;padding:14px 16px;font-size:16px;color:#444;margin-bottom:16px;line-height:1.7;background:#f5f5f0;font-style:italic}
+    .result-box{border:1px solid #ccc;border-radius:4px;padding:16px 18px;background:#fff;margin-bottom:12px}
+    .result-title{font-size:14px;font-weight:bold;letter-spacing:.08em;margin-bottom:14px;color:#333}
+    .result-row{display:flex;gap:24px;flex-wrap:wrap}
+    .result-col{flex:1;min-width:140px}
+    .result-side{font-size:14px;color:#999;margin-bottom:6px}
+    .result-actual{font-size:36px;font-weight:bold;letter-spacing:-.02em}
+    .result-detail{font-size:15px;color:#666;margin-top:6px}
+    .score-badge{display:inline-block;margin-top:8px;padding:4px 14px;border-radius:20px;font-size:14px;font-weight:bold;letter-spacing:.05em}
+    .result-lead{margin-top:14px;font-size:15px;color:#666;border-top:1px solid #eee;padding-top:12px}
+    .score-bar{display:flex;gap:16px;font-size:15px;color:#888;margin-bottom:16px;align-items:center;flex-wrap:wrap}
     .score-bar span{color:#333;font-weight:bold}
-    .timer-note{font-size:11px;color:#aaa;margin-bottom:12px;font-style:italic}
   </style>
 </head>
 <body>
@@ -53,17 +52,19 @@
   </div>
   <div id="board-wrap"></div>
   <div class="pos-label" id="pos-label"></div>
-  <div class="timer-note">Timers start when you tap each input field</div>
   <div class="inputs">
     <div class="input-group">
       <label>&#9675; White pips</label>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+        <button id="btn-start" style="padding:10px 18px;font-size:17px;background:#111;color:#fff;border:1.5px solid #111;border-radius:4px;font-family:Georgia,serif;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;touch-action:manipulation;">Start</button>
+        <div class="timer-display" id="tw">&mdash;</div>
+      </div>
       <input type="number" id="gw" inputmode="numeric" pattern="[0-9]*" placeholder="&mdash;">
-      <div class="timer-display" id="tw">&#9675; &mdash;</div>
     </div>
     <div class="input-group">
       <label>&#9679; Black pips</label>
+      <div class="timer-display" id="tb" style="margin-bottom:6px;">&mdash;</div>
       <input type="number" id="gb" inputmode="numeric" pattern="[0-9]*" placeholder="&mdash;">
-      <div class="timer-display" id="tb">&#9679; &mdash;</div>
     </div>
   </div>
   <div class="error" id="err"></div>
@@ -156,12 +157,12 @@ function tickTimers(){
   var now=Date.now();
   if(wRunning && !wStopped){
     var tw=document.getElementById('tw');
-    tw.textContent='&#9675; '+fmtTime(now-wStart);
+    tw.textContent=fmtTime(now-wStart);
     tw.className='timer-display running';
   }
   if(bRunning && !bStopped){
     var tb=document.getElementById('tb');
-    tb.textContent='&#9679; '+fmtTime(now-bStart);
+    tb.textContent=fmtTime(now-bStart);
     tb.className='timer-display running';
   }
 }
@@ -189,7 +190,7 @@ function stopTimerW(){
     wElapsed=Date.now()-wStart;
     wStopped=true;
     var tw=document.getElementById('tw');
-    tw.innerHTML='&#9675; '+fmtTime(wElapsed);
+    tw.innerHTML=fmtTime(wElapsed);
     tw.className='timer-display stopped';
   }
 }
@@ -199,7 +200,7 @@ function stopTimerB(){
     bElapsed=Date.now()-bStart;
     bStopped=true;
     var tb=document.getElementById('tb');
-    tb.innerHTML='&#9679; '+fmtTime(bElapsed);
+    tb.innerHTML=fmtTime(bElapsed);
     tb.className='timer-display stopped';
   }
 }
@@ -210,17 +211,26 @@ function resetTimers(){
   wRunning=false; bRunning=false;
   wStopped=false; bStopped=false;
   if(tickInterval){clearInterval(tickInterval);tickInterval=null;}
-  document.getElementById('tw').textContent='&#9675; —';
+  document.getElementById('tw').textContent='\u2014';
   document.getElementById('tw').className='timer-display';
-  document.getElementById('tb').textContent='&#9679; —';
+  document.getElementById('tb').textContent='\u2014';
   document.getElementById('tb').className='timer-display';
+  var btn=document.getElementById('btn-start');
+  btn.textContent='Start';
+  btn.style.background='#111';
+  btn.style.borderColor='#111';
 }
  
-// Wire timer events to inputs
-document.getElementById('gw').addEventListener('focus', startTimerW);
+// Start button triggers white timer
+document.getElementById('btn-start').addEventListener('click', function(){
+  resetTimers();
+  startTimerW();
+  document.getElementById('gw').focus();
+  this.textContent='Running...';
+  this.style.background='#c47a00';
+  this.style.borderColor='#c47a00';
+});
 document.getElementById('gw').addEventListener('blur', function(){
-  // Only stop white timer if they move to black field
-  // Actually stop on blur so they can see final time when switching
   stopTimerW();
 });
 document.getElementById('gb').addEventListener('focus', function(){
@@ -294,7 +304,7 @@ function handleReveal(){
       +'<div class="result-actual">'+actual+'</div>'
       +'<div class="result-detail">Your guess: '+guess+' &middot; off by '+Math.abs(guess-actual)+'</div>'
       +'<div class="score-badge" style="border:1px solid '+sc.color+';color:'+sc.color+';background:'+sc.color+'18">'+sc.label+'</div>'
-      +'<div style="font-size:11px;color:#999;margin-top:6px;">Time: '+tStr+'</div>'
+      +'<div style="font-size:14px;color:#999;margin-top:8px;">Time: '+tStr+'</div>'
       +'</div>';
   }
   document.getElementById('result-area').innerHTML='<div class="result-box">'
